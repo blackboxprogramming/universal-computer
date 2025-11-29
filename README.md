@@ -1,3 +1,10 @@
+> ⚗️ **Research Repository**
+>
+> This is an experimental/research repository. Code here is exploratory and not production-ready.
+> For production systems, see [BlackRoad-OS](https://github.com/BlackRoad-OS).
+
+---
+
 # Universal Computer
 
 This repository contains an implementation of a **universal Turing machine** in Python.  A universal Turing machine is a theoretical device capable of simulating any other Turing machine.  In other words, it can compute anything that is computable.  The implementation here is simple and educational; it demonstrates the principles of universality and emulation in a compact form.
