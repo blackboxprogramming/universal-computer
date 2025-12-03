@@ -36,6 +36,12 @@ python3 utm.py machines/incrementer.json --tape "1101"
 
 This will increment the binary number `1101` (13) to `1110` (14).
 
+To observe each step that the machine performs, pass `--trace`:
+
+```
+python3 utm.py machines/incrementer.json --tape "1101" --trace
+```
+
 ## Directory structure
 
 - `utm.py` – the universal Turing machine simulator.
