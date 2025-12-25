@@ -48,12 +48,18 @@ class TuringMachine:
         self.start: str = description["start"]
         self.halt: str = description["halt"]
 
-    def run(self, tape: Dict[int, str], max_steps: int = 10_000) -> Tuple[Dict[int, str], int, str]:
+    def run(
+        self,
+        tape: Dict[int, str],
+        max_steps: int = 10_000,
+        trace: bool = False,
+    ) -> Tuple[Dict[int, str], int, str]:
         """
         Execute the Turing machine on the given tape.
 
         :param tape: Dictionary representing the tape; keys are integer positions, values are symbols.
         :param max_steps: Maximum number of steps to execute before stopping.
+        :param trace: Whether to print a step-by-step trace of execution.
         :return: A tuple of (final tape, steps executed, final state).
         """
         head = 0
@@ -66,6 +72,11 @@ class TuringMachine:
                 # No defined transition; halt prematurely
                 break
             next_state, write_symbol, move = self.transitions[key]
+            if trace:
+                print(
+                    f"[step {steps}] state={state} head={head} read={symbol} "
+                    f"-> write={write_symbol} move={move} next={next_state}"
+                )
             # Write the symbol
             if write_symbol == self.blank:
                 # Represent blank by removing the entry
@@ -107,6 +118,11 @@ def main() -> None:
     parser.add_argument('machine', help='Path to the machine description JSON file')
     parser.add_argument('--tape', default='', help='Initial tape contents (string of symbols)')
     parser.add_argument('--max-steps', type=int, default=10_000, help='Maximum number of steps to execute')
+    parser.add_argument(
+        '--trace',
+        action='store_true',
+        help='Print a step-by-step trace of the machine execution',
+    )
     args = parser.parse_args()
 
     with open(args.machine, 'r', encoding='utf-8') as f:
@@ -114,7 +130,9 @@ def main() -> None:
 
     utm = TuringMachine(description)
     tape = parse_tape(args.tape, utm.blank)
-    final_tape, steps, final_state = utm.run(tape, max_steps=args.max_steps)
+    final_tape, steps, final_state = utm.run(
+        tape, max_steps=args.max_steps, trace=args.trace
+    )
     print(f"Final state: {final_state}")
     print(f"Steps executed: {steps}")
     print(f"Final tape: {tape_to_string(final_tape, utm.blank)}")
