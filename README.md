@@ -65,3 +65,11 @@ Alan Turing proved in 1936 that a universal Turing machine can compute anything 
 ## License
 
 Proprietary -- BlackRoad OS, Inc.
+
+## Related Projects
+
+| Project | Description |
+|---------|-------------|
+| [RoadC](https://github.com/blackboxprogramming/roadc) | Custom programming language |
+| [Quantum Math Lab](https://github.com/blackboxprogramming/quantum-math-lab) | Mathematical computation toolkit |
+| [Simulation Theory](https://github.com/blackboxprogramming/simulation-theory) | Physics and universe simulation |
